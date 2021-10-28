@@ -1,27 +1,37 @@
 package agh.ics.oop;
 
-import java.util.Arrays;
-
 public class World {
     public static void main(String[] args) {
-        System.out.println("system wystartował");
+        System.out.println("SYSTEM WYSTARTOWAL");
         String[] argumenty = {"r","l","b","f"};
-
-
-        System.out.println("system zakończył działanie");
+        run(change(argumenty));
+        System.out.println();
+        System.out.println("SYSTEM ZAKONCZYL DZIALANIE");
     }
 
-    public static void run(String[] args){
 
+    public static Direction[] change(String[]  args){
+        int size = args.length;
+        int ctr = 0;
+        Direction[] enarr = new Direction[size];
         for(String text: args){
+            enarr[ctr] = Direction.change(text);
+            ctr++;
+        }
+        return enarr;
+    }
+
+
+    public static void run(Direction[] args){
+        for(Direction text: args){
             String message = switch(text) {
-                case "f" -> "Do przodu";
-                case "b" -> "Do tyłu";
-                case "r" -> "W prawo";
-                case "l" -> "W lewo";
-                default -> "Nieznana komenda";
+                case FORWARD -> "Do przodu ";
+                case BACKWARD -> "Do tyłu ";
+                case RIGHT -> "W prawo ";
+                case LEFT -> "W lewo ";
+                default -> "Nieznana komenda ";
             };
-            System.out.println(message);
+            System.out.print(message);
         }
 
     }
